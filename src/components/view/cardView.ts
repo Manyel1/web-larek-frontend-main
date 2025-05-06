@@ -4,7 +4,7 @@ import { ensureElement } from '../../utils/utils';
 import { BaseView } from '../base/BaseView';
 import { SELECTORS } from '../base/selectors';
 
-export class CatalogCard extends BaseView {
+export class CardView extends BaseView {
 	private _title: HTMLElement;
 	private _price: HTMLElement;
 	private _image: HTMLImageElement;
@@ -26,9 +26,8 @@ export class CatalogCard extends BaseView {
 		this._category.textContent = product.category;
 	}
 
-	public bindClick(product: IProduct): void {
-		this.element.addEventListener('click', () => {
-			eventBus.emit('catalogCardClicked', product);
-		});
+	public onClick(callback: () => void): void {
+		this.element.addEventListener('click', callback);
 	}
+	
 }

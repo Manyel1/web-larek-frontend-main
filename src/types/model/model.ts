@@ -9,8 +9,7 @@ export interface IProduct {
 
 export interface IBasketProduct extends IProduct {
 	quantity: number;
-  }
-  
+}
 
 export const CARD_CATEGORIES = {
 	'софт-скил': 'card__category_soft',
@@ -22,7 +21,6 @@ export const CARD_CATEGORIES = {
 
 export type CardCategory = keyof typeof CARD_CATEGORIES;
 
-
 export interface ICatalogCardData {
 	title: string;
 	price: number;
@@ -30,13 +28,16 @@ export interface ICatalogCardData {
 	category: string;
 }
 
-
-
 export interface IPreviewCardData {
 	id: string;
 	category: string;
 	title: string;
 	description: string;
 	image: string;
-	priceText: string;   // вот это поле
-  }
+	priceText: string;
+}
+
+export interface IDeliveryData {
+	paymentMethod: string;
+	address: string;
+}

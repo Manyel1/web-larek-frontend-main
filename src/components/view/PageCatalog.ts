@@ -16,8 +16,6 @@ export class PageView extends BaseView {
 	public append(child: HTMLElement): void {
 		this._gallery.appendChild(child);
 	}
-
-	
 }
 
 

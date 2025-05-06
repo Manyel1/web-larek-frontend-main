@@ -12,12 +12,21 @@ export class BasketView extends BaseView {
 	constructor(container: HTMLElement) {
 		super(container);
 
-		this._basketList = ensureElement(SELECTORS_BASKET.BASKET_LIST, this.element);
-		this._basketPrice = ensureElement(SELECTORS_BASKET.BASKET_PRICE, this.element);
+		this._basketList = ensureElement(
+			SELECTORS_BASKET.BASKET_LIST,
+			this.element
+		);
+		this._basketPrice = ensureElement(
+			SELECTORS_BASKET.BASKET_PRICE,
+			this.element
+		);
 		this.counterElement = ensureElement(SELECTORS_BASKET.BASKET_COUNTER);
 
-		ensureElement(SELECTORS_BASKET.BASKET_BTN).addEventListener('click', () => {
-			eventBus.emit('basket:open');
+		ensureElement(
+			SELECTORS_BASKET.BASKET_CHECKOUT,
+			this.element
+		).addEventListener('click', () => {
+			eventBus.emit('basket:checkout');
 		});
 	}
 
@@ -34,5 +43,8 @@ export class BasketView extends BaseView {
 		this._basketPrice.textContent = `${price} синапсов`;
 	}
 
-  
+	public onClick(callback: () => void): void {
+		const basketBtn = ensureElement(SELECTORS_BASKET.BASKET_BTN);
+		basketBtn.addEventListener('click', () => callback());
+	}
 }

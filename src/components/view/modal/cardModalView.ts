@@ -1,9 +1,8 @@
-import { eventBus } from "../../..";
-import { IProduct } from "../../../types/model/model";
-import { ensureElement } from "../../../utils/utils";
-import { BaseView } from "../../base/BaseView";
-import { SELECTORS } from "../../base/selectors";
-
+import { eventBus } from '../../..';
+import { IProduct } from '../../../types/model/model';
+import { ensureElement } from '../../../utils/utils';
+import { BaseView } from '../../base/BaseView';
+import { SELECTORS } from '../../base/selectors';
 
 export class PreviewCardView extends BaseView {
 	private _category: HTMLElement;
@@ -19,11 +18,15 @@ export class PreviewCardView extends BaseView {
 		this._image = ensureElement<HTMLImageElement>(SELECTORS.IMAGE, container);
 		this._category = ensureElement<HTMLElement>(SELECTORS.CATEGORY, container);
 		this._title = ensureElement<HTMLElement>(SELECTORS.TITLE, container);
-		this._description = ensureElement<HTMLElement>(SELECTORS.DESCRIPTION, container);
-		this._button = ensureElement<HTMLButtonElement>(SELECTORS.ADD_BUTTON, container);
+		this._description = ensureElement<HTMLElement>(
+			SELECTORS.DESCRIPTION,
+			container
+		);
+		this._button = ensureElement<HTMLButtonElement>(
+			SELECTORS.ADD_BUTTON,
+			container
+		);
 		this._price = ensureElement<HTMLElement>(SELECTORS.PRICE, container);
-
-	
 	}
 
 	public setData(data: IProduct): void {
@@ -36,11 +39,7 @@ export class PreviewCardView extends BaseView {
 			data.price !== null ? `${data.price} синапсов` : 'Бесплатно';
 	}
 
-	public bindAddToCart(product: IProduct): void {
-		this._button.addEventListener('click', () => {
-			eventBus.emit('basket:add', product);
-		});
+	public bindAddToCart(callback: () => void): void {
+		this._button.addEventListener('click', callback);
 	}
-
-	  
 }

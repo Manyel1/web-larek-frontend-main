@@ -23,7 +23,6 @@ export class ModalView extends BaseView {
 
   public close(): void {
     this.element.classList.remove('modal_active');
-    eventBus.emit('modalClosed'); 
   }
 
   public setContent(content: HTMLElement): void {
